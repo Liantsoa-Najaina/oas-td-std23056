@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Std_management_API
+  description: API specification for student management
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/NAJAINAANDRIAMAMPIAN/Student_Management/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths: {}
+components:
+  schemas:
+    Group:
+      required:
+      - groupName
+      - promotion
+      - studentsNumber
+      - year
+      type: object
+      properties:
+        groupId:
+          type: integer
+          description: Unique identifier for each group.
+        groupName:
+          type: string
+          description: The Group's name.
+        year:
+          type: string
+          description: The group's year.
+          format: year
+        promotion:
+          type: string
+          description: The group's promotion
+          enum:
+          - G
+          - H
+          - J
+          - K
+        studentsNb:
+          type: integer
+          description: Number of students in the group
+        students:
+          type: array
+          description: List of students belonging to the group
+          items:
+            $ref: '#/components/schemas/Students'
+    Students:
+      required:
+      - birthdate
+      - group
+      - id
+      - name
+      - reference
+      - sex
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the student.
+        name:
+          type: string
+          description: The student's name
+        sex:
+          type: string
+          description: The student's sex/gender
+          enum:
+          - M
+          - F
+        birthdate:
+          type: string
+          description: The student's birthdate
+          format: date
+        reference:
+          type: string
+          description: The student's reference
+          format: STDXXXXX
+        group:
+          type: string
+          description: The group the student belongs to.
